@@ -111,10 +111,10 @@ export default {
         this.lookupNumber = this.searchNumber;
         let temp = this.$root.$data.numbers.filter(number => number.id === Number(this.lookupNumber))
         if (temp.length < 1 || temp == undefined) {
-          console.log("number not in database... adding it")
+          //console.log("number not in database... adding it")
           this.newlyAdded = true
           let primality = this.probablyPrime(Number(this.lookupNumber), 8)
-          console.log("prime:", primality)
+          //console.log("prime:", primality)
           let factors = []
           if (primality) {
             factors.push(1)
