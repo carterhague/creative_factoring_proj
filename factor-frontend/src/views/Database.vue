@@ -1,7 +1,7 @@
 <template>
 <div class="position-relative">
   <!-- shape Hero -->
-  <section class="section-shaped my-0 fullscreen1">
+  <section class="section-shaped my-0 fullscreen">
     <div class="shape shape-style-1 bg-gradient-primary">
       <span></span>
       <span></span>
@@ -15,31 +15,10 @@
       <span></span>
     </div>
     <div class="container shape-container">
-      <div id="factorSearchBar" class="mediumwidth">
-        <base-input :valid="isNumber()" v-model="searchNumber" v-on:keyup.enter="onSubmit" placeholder="Search for a number!"></base-input>
-      </div>
-      <div id="warningBoxes" class="mediumwidth">
-        <base-alert v-if="!isNumber()" type="warning">
-          <strong>Warning!</strong> Make sure your input is a number :)
-        </base-alert>
-        <base-alert v-if="this.newlyAdded" type="info" dismissible>
-          <span class="alert-inner--icon"><i class="ni ni-satisfied"></i></span>
-          <span class="alert-inner--text"><strong>Info!</strong> We just added this number to the database</span>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </base-alert>
-        <base-alert v-if="this.alreadyExisted" type="success" dismissible>
-          <span class="alert-inner--icon"><i class="ni ni-check-bold"></i></span>
-          <span class="alert-inner--text"><strong>Yay!</strong> We found your number in the database</span>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </base-alert>
-      </div>
       <div id="searchResults" class="mediumwidth">
         <NumberDetails :numbers="numbers" />
       </div>
+      <br>
     </div>
   </section>
 </div>
@@ -60,7 +39,7 @@ export default {
   },
   computed: {
     numbers() {
-      return this.$root.$data.numbers.filter(number => number.id === Number(this.lookupNumber));
+      return this.$root.$data.numbers;
     }
   },
   methods: {
@@ -139,7 +118,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #factorSearchBar {
   margin-top: 10%;
 }
@@ -149,8 +128,8 @@ export default {
   width: 66%;
 }
 
-.fullscreen1 {
+.fullscreen {
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 </style>

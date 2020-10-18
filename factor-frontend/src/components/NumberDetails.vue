@@ -33,5 +33,6 @@ export default {
   padding-top:1px;
   background-color: white;
   border-radius:10px;
+  margin: 10px;
 }
 </style>
