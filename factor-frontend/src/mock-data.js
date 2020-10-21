@@ -3,45 +3,17 @@ let mock = [{
   "prime": false,
   "factors": [1]
 }, {
+  "id": 12,
+  "prime": false,
+  "factors": [1, 2, 3, 4, 6, 12]
+}, {
   "id": 2,
   "prime": true,
   "factors": [1, 2]
 }, {
-  "id": 21312,
+  "id": 0,
   "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 2131212,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 21312123,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 2131212312,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 21312123121,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 213121231211,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 2131212312111,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 17,
-  "prime": true,
-  "factors": [1, 17]
-}, {
-  "id": 12,
-  "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": []
 }, {
   "id": 3,
   "prime": true,
@@ -49,7 +21,7 @@ let mock = [{
 }, {
   "id": 4,
   "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": [1, 2, 4]
 }, {
   "id": 5,
   "prime": true,
@@ -57,7 +29,7 @@ let mock = [{
 }, {
   "id": 6,
   "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": [1, 2, 3, 6]
 }, {
   "id": 7,
   "prime": true,
@@ -65,15 +37,15 @@ let mock = [{
 }, {
   "id": 8,
   "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": [1, 2, 4, 8]
 }, {
   "id": 9,
   "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": [1, 3, 9]
 }, {
   "id": 10,
   "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": [1, 2, 5, 10]
 }, {
   "id": 11,
   "prime": true,
@@ -85,103 +57,59 @@ let mock = [{
 }, {
   "id": 14,
   "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": [1, 2, 7, 14]
 }, {
   "id": 15,
   "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": [1, 3, 5, 15]
 }, {
   "id": 16,
   "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": [1, 2, 4, 8, 16]
+}, {
+  "id": 17,
+  "prime": true,
+  "factors": [1, 17]
 }, {
   "id": 18,
   "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": [1, 2, 3, 6, 9, 18]
 }, {
   "id": 19,
   "prime": true,
   "factors": [1, 19]
 }, {
+  "id": 20,
+  "prime": false,
+  "factors": [1, 2, 4, 5, 10, 20]
+}, {
   "id": 21,
   "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": [1, 3, 7, 21]
 }, {
   "id": 22,
   "prime": false,
-  "factors": "Unknown at the moment"
+  "factors": [1, 2, 11, 22]
 }, {
   "id": 23,
   "prime": true,
   "factors": [1, 23]
 }, {
-  "id": 24,
+  "id": 143,
+  "prime": false,
+  "factors": [1, 11, 13, 143]
+}, {
+  "id": 123,
+  "prime": false,
+  "factors": [1, 3, 41, 123]
+}, {
+  "id": 1234,
   "prime": false,
   "factors": "Unknown at the moment"
 }, {
-  "id": 25,
+  "id": 727,
   "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 26,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 27,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 28,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 29,
-  "prime": true,
-  "factors": [1, 29]
-}, {
-  "id": 30,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 31,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 32,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 33,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 34,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 35,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 36,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 37,
-  "prime": true,
-  "factors": [1, 37]
-}, {
-  "id": 38,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 39,
-  "prime": false,
-  "factors": "Unknown at the moment"
-}, {
-  "id": 41,
-  "prime": true,
-  "factors": [1, 41]
+  "factors": [1, 727]
 }]
 
 export default mock;

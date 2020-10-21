@@ -64,6 +64,9 @@ export default {
     }
   },
   methods: {
+    factors: function(number) {
+      return Array.from(Array(number + 1), (_, i) => i).filter(i => number % i === 0)
+    },
     probablyPrime: function(n, k) {
       if (n === 2 || n === 3)
         return true;
@@ -120,7 +123,12 @@ export default {
             factors.push(1)
             factors.push(Number(this.lookupNumber))
           } else {
-            factors = "Unknown at the moment"
+            if (Number(this.lookupNumber) < Math.pow(2, 10)) {
+              factors = this.factors(Number(this.lookupNumber))
+            } else {
+              factors = "Unknown at the moment"
+            }
+
           }
           this.$root.$data.numbers.push({
             "id": Number(this.lookupNumber),
