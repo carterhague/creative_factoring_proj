@@ -60,7 +60,9 @@ export default {
   },
   computed: {
     numbers() {
-      return this.$root.$data.numbers.filter(number => number.id === Number(this.lookupNumber));
+      if (this.lookupNumber !== "") {
+        return this.$root.$data.numbers.filter(number => number.id === Number(this.lookupNumber));
+      }
     }
   },
   methods: {
@@ -108,36 +110,38 @@ export default {
       return true
     },
     onSubmit: function() {
-      this.newlyAdded = false
-      this.alreadyExisted = false
-      if (this.isNumber()) {
-        this.lookupNumber = this.searchNumber;
-        let temp = this.$root.$data.numbers.filter(number => number.id === Number(this.lookupNumber))
-        if (temp.length < 1 || temp == undefined) {
-          //console.log("number not in database... adding it")
-          this.newlyAdded = true
-          let primality = this.probablyPrime(Number(this.lookupNumber), 8)
-          //console.log("prime:", primality)
-          let factors = []
-          if (primality) {
-            factors.push(1)
-            factors.push(Number(this.lookupNumber))
-          } else {
-            if (Number(this.lookupNumber) < Math.pow(2, 10)) {
-              factors = this.factors(Number(this.lookupNumber))
+      if(this.searchNumber !== "") {
+        this.newlyAdded = false
+        this.alreadyExisted = false
+        if (this.isNumber()) {
+          this.lookupNumber = this.searchNumber;
+          let temp = this.$root.$data.numbers.filter(number => number.id === Number(this.lookupNumber))
+          if (temp.length < 1 || temp == undefined) {
+            //console.log("number not in database... adding it")
+            this.newlyAdded = true
+            let primality = this.probablyPrime(Number(this.lookupNumber), 8)
+            //console.log("prime:", primality)
+            let factors = []
+            if (primality) {
+              factors.push(1)
+              factors.push(Number(this.lookupNumber))
             } else {
-              factors = "Unknown at the moment"
-            }
+              if (Number(this.lookupNumber) < Math.pow(2, 10)) {
+                factors = this.factors(Number(this.lookupNumber))
+              } else {
+                factors = "Unknown at the moment"
+              }
 
+            }
+            this.$root.$data.numbers.push({
+              "id": Number(this.lookupNumber),
+              "prime": primality,
+              "factors": factors
+            })
           }
-          this.$root.$data.numbers.push({
-            "id": Number(this.lookupNumber),
-            "prime": primality,
-            "factors": factors
-          })
+          this.alreadyExisted = !(this.newlyAdded)
+          this.displayResults = true;
         }
-        this.alreadyExisted = !(this.newlyAdded)
-        this.displayResults = true;
       }
     }
   },
