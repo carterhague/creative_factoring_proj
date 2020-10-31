@@ -10,47 +10,29 @@ app.use(bodyParser.urlencoded({
 const mongoose = require('mongoose');
 
 // connect to the database
-mongoose.connect('mongodb://localhost:27017/museum', {
+mongoose.connect('mongodb://localhost:27017/factorbase', {
   useNewUrlParser: true
 });
 
-// Configure multer so that it will upload to '../front-end/public/images'
-const multer = require('multer')
-const upload = multer({
-  dest: '../front-end/public/images/',
-  limits: {
-    fileSize: 10000000
-  }
-});
-
-// Create a scheme for items in the museum: a title and a path to an image.
+// Create a scheme for items in the db: a number, primailty, and a factorization
 const itemSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  path: String,
+  number: String,
+  primality: String,
+  factorization: String,
 });
 
 // Create a model for items in the museum.
 const Item = mongoose.model('Item', itemSchema);
 
-// Upload a photo. Uses the multer middleware for the upload and then returns
-// the path where the photo is stored in the file system.
-app.post('/api/photos', upload.single('photo'), async (req, res) => {
-  // Just a safety check
-  if (!req.file) {
-    return res.sendStatus(400);
-  }
-  res.send({
-    path: "/images/" + req.file.filename
-  });
-});
-
-// Create a new item in the museum: takes a title and a path to an image.
+// Create a new item in the db: takes a number. sage computes a factorization & primailty
 app.post('/api/items', async (req, res) => {
+  posted_number = req.body.number
+  sage_primality = "Prime/Composite" // FIX THIS
+  sage_factorization = "1 * 2 * 3 * lol" // FIX THIS
   const item = new Item({
-    title: req.body.title,
-    description: req.body.description,
-    path: req.body.path,
+    number: posted_number,
+    primality: sage_primality,
+    factorization: sage_factorization,
   });
   try {
     await item.save();
@@ -61,8 +43,8 @@ app.post('/api/items', async (req, res) => {
   }
 });
 
-// Get a list of all of the items in the museum.
-app.get('/api/items', async (req, res) => {
+// Get a list of all of the items in the database
+app.get('/api/numbers', async (req, res) => {
   try {
     let items = await Item.find();
     res.send(items);
@@ -72,8 +54,8 @@ app.get('/api/items', async (req, res) => {
   }
 });
 
-// Delete a item from the museum
-app.delete('/api/items/:id', async (req, res) => {
+// Delete a item from the database
+app.delete('/api/numbers/:id', async (req, res) => {
   try {
     await Item.deleteOne({
       _id: req.params.id
@@ -85,14 +67,15 @@ app.delete('/api/items/:id', async (req, res) => {
   }
 });
 
-// Edit an item
-app.put('/api/items/:id', async (req, res) => {
+// Edit an item's db entry, give all info manually
+app.put('/api/numbers/:id', async (req, res) => {
   try {
     let item = await Item.findOne({
       _id: req.params.id
     });
-    item.title = req.body.title
-    item.description = req.body.description
+    item.number = req.body.number
+    item.primailty = req.body.primailty
+    item.factorization = req.body.factorization
     await item.save()
     res.sendStatus(200);
   } catch (error) {
