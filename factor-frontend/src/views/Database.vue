@@ -16,7 +16,7 @@
     </div>
     <div class="container shape-container">
       <div id="searchResults" class="mediumwidth">
-        <NumberDetails :numbers="numbers" />
+        <NumberDetails :numbers="searchResults" />
       </div>
       <br>
     </div>
@@ -25,16 +25,32 @@
 </template>
 
 <script>
+import axios from 'axios';
 import NumberDetails from "../components/NumberDetails.vue"
 export default {
   name: 'Home',
   data() {
     return {
+      numbers: []
     }
   },
+  created() {
+    this.getItems();
+  },
   computed: {
-    numbers() {
-      return this.$root.$data.numbers;
+    searchResults() {
+      return this.numbers;
+    }
+  },
+  methods: {
+    async getItems() {
+      try {
+        let response = await axios.get("/api/numbers");
+        this.numbers = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
   components: {
