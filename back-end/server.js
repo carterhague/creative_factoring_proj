@@ -73,7 +73,6 @@ app.put('/api/numbers/:id', async (req, res) => {
     let item = await Item.findOne({
       _id: req.params.id
     });
-    item.number = req.body.number
     item.primailty = req.body.primailty
     item.factorization = req.body.factorization
     await item.save()

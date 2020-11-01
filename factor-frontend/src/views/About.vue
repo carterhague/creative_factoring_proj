@@ -17,14 +17,14 @@
     <div class="container shape-container">
       <div class="text-white">
         <h1 class="text-white">About</h1>
-        <p class="lead">Fact: FactorDB is a popular online website that has numbers and their factors.</p>
+        <p class="lead">Fact: FactorDB is a popular online cryptography website that has numbers and their factors.</p>
         <p class="lead">Problem: it is not pretty.</p>
         <p class="lead">Solution: this website.</p>
         <p class="lead">While I'm not yet a master web-developer, I do think it is fun to play around
-          and hopefully learn new things. Depending on the current time, this site may or may not be using mock data
+          and hopefully learn new things. Depending on when you access this site, this site may or may not be using mock data
           . Eventually this site will use an express back-end that interfaces with MongoDB and a SageMath script to factor the
           numbers as they come in. This site will then function almost equivalently to FactorDB. The Database page shows current DB entries,
-          while the Factor homepage allows you to make a query. The Maintenece page will allow admin users to manually update/remove entries.</p>
+          while the Factor homepage allows you to make a query. The upcoming Maintenece page will allow admin users to manually update/remove entries.</p>
       </div>
     </div>
   </section>
