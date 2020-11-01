@@ -1,11 +1,11 @@
 <template>
 <div class="resultWrapper">
   <div class="numbers">
-    <div class="number" v-for="number in numbers" :key="number.id">
-      <h2 class="lead">Database Entry: {{number.id}}</h2>
+    <div class="number" v-for="item in numbers" :key="item.number">
+      <h2 class="lead">Database Entry: {{item.number}}</h2>
       <div class="info">
-        <p class="text-default">Prime : {{number.prime}}</p>
-        <p class="text-default">Factors : {{number.factors}}</p>
+        <p class="text-default">Status : {{item.primality}}</p>
+        <p class="text-default">Factorization : {{item.factorization}}</p>
       </div>
   </div>
 </div>

@@ -25,7 +25,7 @@ const itemSchema = new mongoose.Schema({
 const Item = mongoose.model('Item', itemSchema);
 
 // Create a new item in the db: takes a number. sage computes a factorization & primailty
-app.post('/api/items', async (req, res) => {
+app.post('/api/numbers', async (req, res) => {
   posted_number = req.body.number
   sage_primality = "Prime/Composite" // FIX THIS
   sage_factorization = "1 * 2 * 3 * lol" // FIX THIS

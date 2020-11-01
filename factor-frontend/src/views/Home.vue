@@ -37,8 +37,8 @@
           </button>
         </base-alert>
       </div>
-      <div id="searchResults" class="mediumwidth">
-        <NumberDetails :numbers="numbers" />
+      <div v-if="this.displayResults" id="searchResults" class="mediumwidth">
+        <NumberDetails :numbers="searchResults" />
       </div>
     </div>
   </section>
@@ -46,63 +46,35 @@
 </template>
 
 <script>
+import axios from 'axios';
 import NumberDetails from "../components/NumberDetails.vue"
 export default {
   name: 'Home',
   data() {
     return {
       searchNumber: '',
-      lookupNumber: '',
+      lookupNumber: '', // change to lookupId - mongodb entry id
       displayResults: false,
       newlyAdded: false,
       alreadyExisted: false,
+      numbers: [],
     }
   },
+  created() {
+    this.getItems();
+  },
   computed: {
-    numbers() {
+    searchResults() {
       if (this.lookupNumber !== "") {
-        return this.$root.$data.numbers.filter(number => number.id === Number(this.lookupNumber));
+        // api get request for lookup number
+        let result =  this.numbers.filter(item => item.number === this.lookupNumber);
+        let dummy = []
+        dummy.push(result[0])
+        return dummy
       }
     }
   },
   methods: {
-    factors: function(number) {
-      return Array.from(Array(number + 1), (_, i) => i).filter(i => number % i === 0)
-    },
-    probablyPrime: function(n, k) {
-      if (n === 2 || n === 3)
-        return true;
-      if (n % 2 === 0 || n < 2)
-        return false;
-
-      // Write (n - 1) as 2^s * d
-      var s = 0,
-        d = n - 1;
-      while (d % 2 === 0) {
-        d /= 2;
-        ++s;
-      }
-
-      WitnessLoop: do {
-        // A base between 2 and n - 2
-        var x = Math.pow(2 + Math.floor(Math.random() * (n - 3)), d) % n;
-
-        if (x === 1 || x === n - 1)
-          continue;
-
-        for (var i = s - 1; i--;) {
-          x = x * x % n;
-          if (x === 1)
-            return false;
-          if (x === n - 1)
-            continue WitnessLoop;
-        }
-
-        return false;
-      } while (--k);
-
-      return true;
-    },
     isNumber: function() {
       if (isNaN(this.searchNumber)) {
         return false
@@ -110,38 +82,42 @@ export default {
       return true
     },
     onSubmit: function() {
-      if(this.searchNumber !== "") {
+      if (this.searchNumber !== "") {
         this.newlyAdded = false
         this.alreadyExisted = false
         if (this.isNumber()) {
-          this.lookupNumber = this.searchNumber;
-          let temp = this.$root.$data.numbers.filter(number => number.id === Number(this.lookupNumber))
-          if (temp.length < 1 || temp == undefined) {
-            //console.log("number not in database... adding it")
+          let results = this.numbers.filter(item => item.number === this.searchNumber)
+          if (results.length < 1 || results == undefined) {
+            console.log("number not in database... adding it")
             this.newlyAdded = true
-            let primality = this.probablyPrime(Number(this.lookupNumber), 8)
-            //console.log("prime:", primality)
-            let factors = []
-            if (primality) {
-              factors.push(1)
-              factors.push(Number(this.lookupNumber))
-            } else {
-              if (Number(this.lookupNumber) < Math.pow(2, 10)) {
-                factors = this.factors(Number(this.lookupNumber))
-              } else {
-                factors = "Unknown at the moment"
-              }
-
-            }
-            this.$root.$data.numbers.push({
-              "id": Number(this.lookupNumber),
-              "prime": primality,
-              "factors": factors
-            })
+            this.postItem(this.searchNumber)
+            this.numbers.push({"number": this.searchNumber})
           }
           this.alreadyExisted = !(this.newlyAdded)
           this.displayResults = true;
+        } else {
+          this.displayResults = false;
         }
+      }
+      this.lookupNumber = this.searchNumber;
+      this.getItems()
+    },
+    async getItems() {
+      try {
+        let response = await axios.get("/api/numbers");
+        this.numbers = response.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async postItem(newNumber) {
+      try {
+          await axios.post('/api/numbers', {
+          number: newNumber
+          });
+      } catch (error) {
+        console.log(error);
       }
     }
   },
