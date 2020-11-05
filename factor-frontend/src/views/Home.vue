@@ -75,13 +75,16 @@ export default {
     }
   },
   methods: {
+    delay(ms) {
+      return new Promise(res => setTimeout(res, ms))
+    },
     isNumber: function() {
       if (isNaN(this.searchNumber)) {
         return false
       }
       return true
     },
-    onSubmit: function() {
+    async onSubmit() {
       if (this.searchNumber !== "") {
         this.newlyAdded = false
         this.alreadyExisted = false
@@ -100,6 +103,8 @@ export default {
         }
       }
       this.lookupNumber = this.searchNumber;
+      this.getItems()
+      await this.delay(2000); // call again 2 seconds later to get update if it exists
       this.getItems()
     },
     async getItems() {

@@ -1,13 +1,33 @@
 const express = require('express');
-const bodyParser = require("body-parser");
-
+const bodyParser = require('body-parser');
 const app = express();
+const mongoose = require('mongoose');
+const { exec } = require('child_process');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-const mongoose = require('mongoose');
+
+async function sh(cmd) {
+  return new Promise(function (resolve, reject) {
+    exec(cmd, (err, stdout, stderr) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve({ stdout, stderr });
+      }
+    });
+  });
+}
+
+async function main() {
+  let { stdout } = await sh('ls');
+  for (let line of stdout.split('\n')) {
+    console.log(`ls: ${line}`);
+  }
+}
 
 // connect to the database
 mongoose.connect('mongodb://localhost:27017/factorbase', {
@@ -27,19 +47,24 @@ const Item = mongoose.model('Item', itemSchema);
 // Create a new item in the db: takes a number. sage computes a factorization & primailty
 app.post('/api/numbers', async (req, res) => {
   posted_number = req.body.number
-  sage_primality = "Prime/Composite" // FIX THIS
-  sage_factorization = "1 * 2 * 3 * lol" // FIX THIS
-  const item = new Item({
+  sage_primality = "Computing!" // FIX THIS
+  sage_factorization = "Calculating!" // FIX THIS
+  let item = new Item({
     number: posted_number,
     primality: sage_primality,
     factorization: sage_factorization,
   });
+  await item.save()
+  res.send(item);
   try {
+    let { stdout } = await sh('sage script.sage ' + posted_number);
+    sage_primality = stdout.split('\n')[0]
+    sage_factorization = stdout.split('\n')[1]
+    item.primality = sage_primality
+    item.factorization = sage_factorization
     await item.save();
-    res.send(item);
   } catch (error) {
     console.log(error);
-    res.sendStatus(500);
   }
 });
 
