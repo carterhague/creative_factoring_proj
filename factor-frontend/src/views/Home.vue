@@ -104,7 +104,7 @@ export default {
       }
       this.lookupNumber = this.searchNumber;
       this.getItems()
-      await this.delay(3000); // call again 2 seconds later to get update if it exists
+      await this.delay(3000); // call again 3 seconds later to get update if it exists
       this.getItems()
     },
     async getItems() {
