@@ -2,9 +2,10 @@ import Vue from "vue";
 import Router from "vue-router";
 import AppHeader from "./layout/AppHeader";
 import AppFooter from "./layout/AppFooter";
-import Home from "./views/Home.vue"
-import About from "./views/About.vue"
-import Database from "./views/Database.vue"
+import Home from "./views/Home.vue";
+import About from "./views/About.vue";
+import Maintenence from "./views/Maintenence.vue";
+import Database from "./views/Database.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -35,6 +36,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: About,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/maintenence",
+      name: "maintenence",
+      components: {
+        header: AppHeader,
+        default: Maintenence,
         footer: AppFooter
       }
     }

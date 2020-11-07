@@ -7,12 +7,17 @@
     <ul class="navbar-nav align-items-lg-center ml-lg-auto">
       <li class="nav-item">
         <router-link to="/database">
-          <p class="lead mt-3 text-default">Database</p>
+          <p class="lead mt-3 text-default">| Database</p>
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/maintenence">
+          <p class="lead mt-3 text-default">| Maintenence</p>
         </router-link>
       </li>
       <li class="nav-item">
         <router-link to="/about">
-          <p class="lead mt-3 text-default">About</p>
+          <p class="lead mt-3 text-default">| About</p>
         </router-link>
       </li>
     </ul>
