@@ -2,7 +2,9 @@
 <div class="resultWrapper">
   <div class="numbers">
     <div class="number" v-for="item in numbers" :key="item.number">
-      <h2 class="lead">Database Entry: {{item.number}}</h2>
+      <div class="title">
+        <h2 class="lead">Database Entry: {{item.number}}</h2>
+      </div>
       <div class="info">
         <p class="text-default">Status : {{item.primality}}</p>
         <p class="text-default">Factorization : {{item.factorization}}</p>
@@ -22,14 +24,20 @@ export default {
 </script>
 
 <style>
+
+.title {
+  overflow-wrap: break-word;
+}
 .info {
-  display:flex;
+  overflow-wrap: break-word;
   justify-content: space-between;
+  text-overflow: ellipsis;
 }
 
 .number {
   padding-left:10px;
   padding-right:10px;
+  padding-bottom:10px;
   padding-top:1px;
   background-color: white;
   border-radius:10px;

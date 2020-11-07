@@ -24,14 +24,14 @@
         </base-alert>
         <base-alert v-if="this.newlyAdded" type="info" dismissible>
           <span class="alert-inner--icon"><i class="ni ni-satisfied"></i></span>
-          <span class="alert-inner--text"><strong>Info!</strong> We just added this number to the database</span>
+          <span class="alert-inner--text"><strong>Info!</strong> We just added this number to the database... you may have to check back later.</span>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </base-alert>
         <base-alert v-if="this.alreadyExisted" type="success" dismissible>
           <span class="alert-inner--icon"><i class="ni ni-check-bold"></i></span>
-          <span class="alert-inner--text"><strong>Yay!</strong> We found your number in the database</span>
+          <span class="alert-inner--text"><strong>Yay!</strong> We found your number in the database!</span>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -104,7 +104,7 @@ export default {
       }
       this.lookupNumber = this.searchNumber;
       this.getItems()
-      await this.delay(2000); // call again 2 seconds later to get update if it exists
+      await this.delay(3000); // call again 2 seconds later to get update if it exists
       this.getItems()
     },
     async getItems() {
