@@ -67,7 +67,7 @@ export default {
     searchResults() {
       if (this.lookupNumber !== "") {
         // api get request for lookup number
-        let result =  this.numbers.filter(item => item.number === this.lookupNumber);
+        let result = this.numbers.filter(item => item.number === this.lookupNumber);
         let dummy = []
         dummy.push(result[0])
         return dummy
@@ -94,7 +94,9 @@ export default {
             console.log("number not in database... adding it")
             this.newlyAdded = true
             this.postItem(this.searchNumber)
-            this.numbers.push({"number": this.searchNumber})
+            this.numbers.push({
+              "number": this.searchNumber
+            })
           }
           this.alreadyExisted = !(this.newlyAdded)
           this.displayResults = true;
@@ -118,9 +120,9 @@ export default {
     },
     async postItem(newNumber) {
       try {
-          await axios.post('/api/numbers', {
+        await axios.post('/api/numbers', {
           number: newNumber
-          });
+        });
       } catch (error) {
         console.log(error);
       }

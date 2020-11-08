@@ -9,8 +9,8 @@
         <p class="text-default">Status : {{item.primality}}</p>
         <p class="text-default">Factorization : {{item.factorization}}</p>
       </div>
+    </div>
   </div>
-</div>
 </div>
 </template>
 
@@ -24,10 +24,10 @@ export default {
 </script>
 
 <style>
-
 .title {
   overflow-wrap: break-word;
 }
+
 .info {
   overflow-wrap: break-word;
   justify-content: space-between;
@@ -35,12 +35,12 @@ export default {
 }
 
 .number {
-  padding-left:10px;
-  padding-right:10px;
-  padding-bottom:10px;
-  padding-top:1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 1px;
   background-color: white;
-  border-radius:10px;
+  border-radius: 10px;
   margin: 10px;
 }
 </style>

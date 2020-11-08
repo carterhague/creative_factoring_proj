@@ -98,8 +98,9 @@ app.put('/api/numbers/:id', async (req, res) => {
     let item = await Item.findOne({
       _id: req.params.id
     });
-    item.primailty = req.body.primailty
+    item.primality = req.body.primality
     item.factorization = req.body.factorization
+    //console.log(item)
     await item.save()
     res.sendStatus(200);
   } catch (error) {

@@ -38,7 +38,7 @@
         </base-alert>
       </div>
       <div v-if="this.displayResults" id="searchResults" class="mediumwidth">
-        <NumberDetails :numbers="searchResults" />
+        <MainteneceDetails :numbers.sync="searchResults" :displayStatus.sync="displayResults"/>
       </div>
     </div>
   </section>
@@ -47,7 +47,7 @@
 
 <script>
 import axios from 'axios';
-import NumberDetails from "../components/NumberDetails.vue"
+import MainteneceDetails from "../components/MainteneceDetails.vue"
 export default {
   name: 'Home',
   data() {
@@ -67,7 +67,7 @@ export default {
     searchResults() {
       if (this.lookupNumber !== "") {
         // api get request for lookup number
-        let result =  this.numbers.filter(item => item.number === this.lookupNumber);
+        let result = this.numbers.filter(item => item.number === this.lookupNumber);
         let dummy = []
         dummy.push(result[0])
         return dummy
@@ -98,7 +98,7 @@ export default {
             this.displayResults = true;
           }
           this.lookupNumber = this.searchNumber;
-          this.nonExistant = !this.alreadyExisted ;
+          this.nonExistant = !this.alreadyExisted;
         } else {
           this.displayResults = false;
         }
@@ -120,7 +120,7 @@ export default {
     },
   },
   components: {
-    NumberDetails
+    MainteneceDetails
   }
 };
 </script>
