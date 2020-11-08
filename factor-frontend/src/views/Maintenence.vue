@@ -38,7 +38,7 @@
         </base-alert>
       </div>
       <div v-if="this.displayResults" id="searchResults" class="mediumwidth">
-        <MainteneceDetails :numbers.sync="searchResults" :displayStatus.sync="displayResults"/>
+        <MainteneceDetails :numbers.sync="searchResults" :displayStatus.sync="displayResults" :queueUpdate.sync="queueUpdate"/>
       </div>
     </div>
   </section>
@@ -58,10 +58,18 @@ export default {
       alreadyExisted: false,
       nonExistant: false,
       numbers: [],
+      queueUpdate:false
     }
   },
   created() {
     this.getItems();
+  },
+  watch: {
+    queueUpdate: function() {
+      if(this.queueUpdate){
+        this.getItems();
+      }
+    }
   },
   computed: {
     searchResults() {

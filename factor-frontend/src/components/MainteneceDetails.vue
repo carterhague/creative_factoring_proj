@@ -32,6 +32,7 @@ export default {
   props: {
     numbers: Array,
     displayStatus: Boolean,
+    queueUpdate: Boolean,
   },
   data() {
     return {
@@ -44,12 +45,14 @@ export default {
       this.activeEntry._id = this.numbers[0]._id // fixes a werid bug when not entering but switching numbers
       await this.editItem(this.activeEntry)
       this.$emit('update:displayStatus', false) // because prop is synced just emit change
+      this.$emit('update:queueUpdate', true)
     },
     async onDelete() {
       this.activeEntry.number = this.numbers[0].number
       this.activeEntry._id = this.numbers[0]._id // fixes a werid bug when not entering but switching numbers
       await this.deleteItem(this.activeEntry)
       this.$emit('update:displayStatus', false) // because prop is synced just emit change
+      this.$emit('update:queueUpdate', true)
     },
     async editItem(item) {
       try {
