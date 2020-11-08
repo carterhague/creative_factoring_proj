@@ -70,6 +70,7 @@ app.post('/api/numbers', async (req, res) => {
 
 // Get a list of all of the items in the database
 app.get('/api/numbers', async (req, res) => {
+  console.log("hit")
   try {
     let items = await Item.find();
     res.send(items);
