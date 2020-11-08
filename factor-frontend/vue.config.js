@@ -2,7 +2,7 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
-    proxy: 'http://localhost:3000',
+    proxy: 'http://localhost:3001',
   },
   configureWebpack: {
     // Set up all the aliases we use in our app.
