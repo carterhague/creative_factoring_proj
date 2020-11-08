@@ -91,7 +91,7 @@ export default {
         if (this.isNumber()) {
           let results = this.numbers.filter(item => item.number === this.searchNumber)
           if (results.length < 1 || results == undefined) {
-            console.log("number not in database... adding it")
+            //console.log("number not in database... adding it")
             this.newlyAdded = true
             this.postItem(this.searchNumber)
             this.numbers.push({
@@ -115,7 +115,7 @@ export default {
         this.numbers = response.data;
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     async postItem(newNumber) {
@@ -124,7 +124,7 @@ export default {
           number: newNumber
         });
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     }
   },

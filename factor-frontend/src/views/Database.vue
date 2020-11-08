@@ -49,7 +49,7 @@ export default {
         this.numbers = response.data;
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     }
   },

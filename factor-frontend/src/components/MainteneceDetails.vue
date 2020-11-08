@@ -62,7 +62,7 @@ export default {
         });
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
     async deleteItem(item) {
@@ -70,7 +70,7 @@ export default {
         await axios.delete("/api/numbers/" + item._id);
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     }
   }

@@ -99,7 +99,7 @@ export default {
         if (this.isNumber()) {
           let results = this.numbers.filter(item => item.number === this.searchNumber)
           if (results.length < 1 || results == undefined) {
-            console.log("number not in database...")
+            //console.log("number not in database...")
             this.displayResults = false;
           } else {
             this.alreadyExisted = true
@@ -123,7 +123,7 @@ export default {
         this.numbers = response.data;
         return true;
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     },
   },
