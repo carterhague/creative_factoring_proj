@@ -3,6 +3,8 @@ const webpack = require('webpack');
 module.exports = {
   devServer: {
     proxy: 'http://factor.flaminglasers.com:3001',
+    compress: true,
+    disableHostCheck: true,
   },
   configureWebpack: {
     // Set up all the aliases we use in our app.
