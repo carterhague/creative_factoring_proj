@@ -40,6 +40,8 @@
       <div v-if="this.displayResults" id="searchResults" class="mediumwidth">
         <MainteneceDetails :numbers.sync="searchResults" :displayStatus.sync="displayResults" :queueUpdate.sync="queueUpdate"/>
       </div>
+    <br>
+    <br>
     </div>
   </section>
 </div>
@@ -145,6 +147,6 @@ export default {
 
 .fullscreen1 {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 </style>

@@ -26,6 +26,8 @@
           numbers as they come in. This site will then function almost equivalently to FactorDB. The Database page shows current DB entries,
           while the Factor homepage allows you to make a query. The upcoming Maintenece page will allow admin users to manually update/remove entries.</p>
       </div>
+      <br>
+      <br>
     </div>
   </section>
 </div>
@@ -43,6 +45,6 @@
 
 .fullscreen {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
 }
 </style>
